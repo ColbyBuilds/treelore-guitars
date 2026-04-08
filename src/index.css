@@ -29,7 +29,7 @@ body {
   position: relative;
 }
 
-/* Real Hubble Galaxy Background */
+/* Real Hubble Galaxy Background - Pillars of Creation */
 .galaxy-bg {
   position: fixed;
   top: 0;
@@ -37,35 +37,14 @@ body {
   width: 100%;
   height: 100%;
   background:
-    url('https://upload.wikimedia.org/wikipedia/commons/3/3a/Whirlpool_Galaxy_%28M51%29_Spitzer.jpg') center center / cover no-repeat fixed;
+    url('https://cdn.esawebb.org/archives/images/screen/pillars_of_creation.jpg') center center / cover no-repeat fixed;
   z-index: 0;
   animation: galaxy-pan 120s ease-in-out infinite alternate;
 }
 
-.galaxy-bg-2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Carina_Nebula_-_Hubble_2009.jpg/1920px-Carina_Nebula_-_Hubble_2009.jpg') center center / cover no-repeat fixed;
-  opacity: 0.4;
-  z-index: 0;
-  mix-blend-mode: screen;
-}
-
+.galaxy-bg-2,
 .galaxy-bg-3 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background:
-    url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Hubble_Awesome.jpg/1280px-Hubble_Awesome.jpg') center center / cover no-repeat fixed;
-  opacity: 0.3;
-  z-index: 0;
-  mix-blend-mode: screen;
+  display: none;
 }
 
 @keyframes galaxy-pan {

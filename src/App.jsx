@@ -26,10 +26,8 @@ function App() {
 
   return (
     <div className="space-container">
-      {/* Real Hubble Galaxy Backgrounds */}
+      {/* Real Hubble Galaxy Background - Pillars of Creation */}
       <div className="galaxy-bg"></div>
-      <div className="galaxy-bg-2"></div>
-      <div className="galaxy-bg-3"></div>
       {/* Stars overlay for depth */}
       <div className="stars"></div>
       <div className="stars-2"></div>
