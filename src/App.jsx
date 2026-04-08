@@ -1,8 +1,46 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 function App() {
   const [activeSection, setActiveSection] = useState('splash')
   const [showContactModal, setShowContactModal] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [cursorVisible, setCursorVisible] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    // Loading animation
+    const timer = setTimeout(() => setLoading(false), 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    // Parallax mouse effect
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 20
+      const y = (e.clientY / window.innerHeight - 0.5) * 20
+      setMousePos({ x, y })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  const handleScroll = (e) => {
+    const cards = document.querySelectorAll('.guitar-card, .archive-card, .splash-option')
+    cards.forEach((card, index) => {
+      const rect = card.getBoundingClientRect()
+      const cardTop = rect.top + window.scrollY
+      const windowHeight = window.innerHeight
+      if (cardTop > windowHeight / 2) {
+        card.style.opacity = '0.3'
+        card.style.transform = `translateY(${(cardTop - windowHeight / 2) / 8}px)`
+      } else {
+        card.style.opacity = '1'
+        card.style.transform = 'translateY(0)'
+      }
+    })
+  }
 
   // Guitars named after astrological signs
   const guitars = [
@@ -24,16 +62,50 @@ function App() {
     { id: 6, name: "PRISM", year: "2021", desc: "Modular pickup system. Swap tones in seconds. Unlimited possibilities.", icon: "💎" },
   ]
 
+  // Floating particles
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 3 + 1,
+    delay: Math.random() * 3
+  }))
+
   return (
-    <div className="space-container">
+    <div
+      className="space-container"
+      ref={containerRef}
+      onMouseEnter={() => setCursorVisible(true)}
+      onMouseLeave={() => setCursorVisible(false)}
+    >
       {/* Real Hubble Galaxy Background - Pillars of Creation */}
-      <div className="galaxy-bg"></div>
+      <div className="galaxy-bg" style={{ transform: `translateX(${-mousePos.x}px) translateY(${-mousePos.y}px)` }}></div>
+
       {/* Stars overlay for depth */}
       <div className="stars"></div>
       <div className="stars-2"></div>
+
+      {/* Floating particles */}
+      <div className="particles-container">
+        {particles.map(p => (
+          <div
+            key={p.id}
+            className="particle"
+            style={{
+              left: `${p.x}%`,
+              top: `${p.y}%`,
+              width: `${p.size}px`,
+              height: `${p.size}px`,
+              animationDelay: `${p.delay}s`
+            }}
+          />
+        ))}
+      </div>
+
       {/* Sacred Geometry - subtle overlay */}
       <div className="sacred-geometry"></div>
       <div className="flower-of-life"></div>
+
       {/* Gemstones - floating elements */}
       <div className="gemstone gem-1">
         <svg width="40" height="40" viewBox="0 0 40 40">
@@ -61,8 +133,28 @@ function App() {
         </svg>
       </div>
 
+      {/* Loading screen */}
+      {loading && (
+        <div className="loading-screen">
+          <div className="loading-ring"></div>
+          <div className="loading-ring ring-2"></div>
+          <div className="loading-text">TREELORE</div>
+        </div>
+      )}
+
+      {/* Custom cursor */}
+      {cursorVisible && (
+        <div
+          className="custom-cursor"
+          style={{
+            left: `${mousePos.x + window.innerWidth / 2}px`,
+            top: `${mousePos.y + window.innerHeight / 2}px`
+          }}
+        />
+      )}
+
       {/* Navigation - only shows when not on splash */}
-      {activeSection !== 'splash' && (
+      {!loading && activeSection !== 'splash' && (
         <nav className="space-nav">
           <div className="nav-logo">
             <svg className="tree-logo" viewBox="0 0 100 100" width="50" height="50">
@@ -101,8 +193,8 @@ function App() {
       )}
 
       {/* Splash Section */}
-      {activeSection === 'splash' && (
-        <section className="splash-section">
+      {!loading && activeSection === 'splash' && (
+        <section className="splash-section" onScroll={handleScroll}>
           <div className="splash-content">
             <div className="splash-logo">
               <svg className="tree-logo-huge" viewBox="0 0 200 200" width="200" height="200">
@@ -118,9 +210,9 @@ function App() {
                   </linearGradient>
                 </defs>
               </svg>
-              <h1 className="splash-title">TREELORE</h1>
-              <h2 className="splash-subtitle">GUITARS</h2>
             </div>
+            <h1 className="splash-title">TREELORE</h1>
+            <h2 className="splash-subtitle">GUITARS</h2>
             <p className="splash-tagline">
               ORIGINAL DESIGNS FOR MUSICIANS SEEKING A NEW BRUSH
             </p>
@@ -150,13 +242,13 @@ function App() {
       )}
 
       {/* Collection Section */}
-      {activeSection === 'collection' && (
-        <section className="section">
+      {!loading && activeSection === 'collection' && (
+        <section className="section" onScroll={handleScroll}>
           <h2 className="section-title">THE ZODIAC SERIES</h2>
           <p className="section-subtitle">Every guitar is an original design. Not a Strat. Not a Paul. Something entirely yours.</p>
           <div className="guitar-grid">
-            {guitars.map(guitar => (
-              <div key={guitar.id} className={`guitar-card ${guitar.type.includes('SOLD') ? 'sold' : ''}`}>
+            {guitars.map((guitar, index) => (
+              <div key={guitar.id} className={`guitar-card ${guitar.type.includes('SOLD') ? 'sold' : ''}`} style={{ animationDelay: `${index * 0.1}s` }}>
                 <div className="guitar-visual">
                   <span className="guitar-sign">{guitar.sign}</span>
                   <div className="card-glow"></div>
@@ -177,13 +269,13 @@ function App() {
       )}
 
       {/* Archive Section */}
-      {activeSection === 'archive' && (
-        <section className="section">
+      {!loading && activeSection === 'archive' && (
+        <section className="section" onScroll={handleScroll}>
           <h2 className="section-title">ARCHIVE</h2>
           <p className="section-subtitle">A collection of experiments, innovations, and boundary-pushing builds. These guitars found their way to deserving hands.</p>
           <div className="archive-grid">
             {archive.map((item, index) => (
-              <div key={item.id} className="archive-card" style={{ animationDelay: `${index * 0.1}s` }}>
+              <div key={item.id} className="archive-card" style={{ animationDelay: `${index * 0.08}s` }}>
                 <div className="archive-icon">{item.icon}</div>
                 <div className="archive-year">{item.year}</div>
                 <h3 className="archive-name">{item.name}</h3>
@@ -195,7 +287,7 @@ function App() {
       )}
 
       {/* Contact Section */}
-      {activeSection === 'contact' && (
+      {!loading && activeSection === 'contact' && (
         <section className="section contact-section">
           <h2 className="section-title">CONTACT</h2>
           <p className="section-subtitle">Your vision deserves an instrument as unique as your music.</p>
@@ -239,7 +331,7 @@ function App() {
       )}
 
       {/* Footer */}
-      {activeSection !== 'splash' && (
+      {!loading && activeSection !== 'splash' && (
         <footer className="space-footer">
           <div className="footer-content">
             <div className="footer-logo">
