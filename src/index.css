@@ -35,8 +35,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 110%;
-  height: 110%;
+  width: 100%;
+  height: 100%;
   background:
     url('https://cdn.esawebb.org/archives/images/screen/pillars_of_creation.jpg') center center / cover no-repeat fixed;
   z-index: 0;
@@ -45,11 +45,11 @@ body {
 }
 
 @keyframes galaxy-pan {
-  0% { transform: scale(1.1); }
+   0% { transform: scale(1.1); }
   100% { transform: scale(1.3); }
 }
 
-/* Floating particles */
+/* Floating cosmic particles */
 .particles-container {
   position: fixed;
   top: 0;
@@ -77,11 +77,6 @@ body {
   animation: float-particle 10s ease-in-out infinite;
 }
 
-.particle:nth-child(3n+1) {
-  background: radial-gradient(circle, #ec4899, transparent);
-  animation: float-particle 12s ease-in-out infinite;
-}
-
 @keyframes float-particle {
   0%, 100% {
     opacity: 0.3;
@@ -93,11 +88,11 @@ body {
   }
   50% {
     opacity: 0.4;
-    transform: translateY(-100px) translateX(-20px) scale(0.8);
+    transform: translateY(-100px) translateX(-20px) scale(1);
   }
   75% {
     opacity: 0.5;
-    transform: translateY(-30px) translateX(-40px) scale(1.1);
+    transform: translateY(-30px) translateX(-40px) scale(1.05);
   }
 }
 
@@ -188,209 +183,6 @@ body {
   50% { transform: translate(-50%, -50%) scale(1.5); }
 }
 
-/* Stars overlay for depth */
-.stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    radial-gradient(1px 1px at 5% 10%, white, transparent),
-    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 25% 15%, white, transparent),
-    radial-gradient(1px 1px at 35% 30%, rgba(200,220,255,0.8), transparent),
-    radial-gradient(1px 1px at 45% 20%, white, transparent),
-    radial-gradient(1px 1px at 55% 35%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 65% 25%, white, transparent),
-    radial-gradient(1px 1px at 75% 40%, rgba(200,200,255,0.8), transparent),
-    radial-gradient(1px 1px at 85% 30%, white, transparent),
-    radial-gradient(1px 1px at 95% 45%, rgba(255,255,255,0.9), transparent),
-    radial-gradient(1px 1px at 10% 50%, white, transparent),
-    radial-gradient(1px 1px at 20% 65%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 30% 55%, white, transparent),
-    radial-gradient(1px 1px at 40% 70%, rgba(200,220,255,0.9), transparent),
-    radial-gradient(1px 1px at 50% 60%, white, transparent),
-    radial-gradient(1px 1px at 60% 75%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 70% 65%, white, transparent),
-    radial-gradient(1px 1px at 80% 80%, rgba(200,200,255,0.9), transparent),
-    radial-gradient(1px 1px at 90% 70%, white, transparent),
-    radial-gradient(2px 2px at 50% 50%, white, transparent),
-    radial-gradient(10px 10px at 50% 50%, rgba(255,255,255,0.3), transparent),
-    radial-gradient(3px 3px at 20% 80%, white, transparent),
-    radial-gradient(12px 12px at 20% 80%, rgba(255,255,255,0.2), transparent),
-    radial-gradient(3px 3px at 80% 20%, white, transparent);
-    radial-gradient(15px 15px at 80% 20%, rgba(200,220,255,0.25), transparent);
-  background-size: 100% 100%;
-  animation: twinkle 4s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.stars-2 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    radial-gradient(1px 1px at 8% 40%, white, transparent),
-    radial-gradient(1px 1px at 18% 55%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 28% 45%, white, transparent),
-    radial-gradient(1px 1px at 38% 60%, rgba(200,220,255,0.9), transparent),
-    radial-gradient(1px 1px at 48% 50%, white, transparent),
-    radial-gradient(1px 1px at 58% 65%, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 68% 55%, white, transparent),
-    radial-gradient(1px 1px at 78% 70%, rgba(200,200,255,0.9), transparent),
-    radial-gradient(1px 1px at 88% 60%, white, transparent),
-    radial-gradient(1px 1px at 98% 75%, rgba(255,255,255,0.8), transparent);
-  background-size: 100% 100%;
-  animation: twinkle 6s ease-in-out infinite reverse;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-/* Sacred Geometry Background - very subtle */
-.sacred-geometry {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 150vmax;
-  height: 150vmax;
-  opacity: 0.015;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.sacred-geometry::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    repeating-conic-gradient(
-      from 0deg,
-      transparent 0deg,
-      transparent 29deg,
-      rgba(139, 92, 246, 1) 30deg,
-      transparent 31deg
-    );
-}
-
-.sacred-geometry::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, transparent 0%, transparent 20%, rgba(6, 182, 212, 0.25) 20.5%, transparent 21%);
-  background-size: 25% 25%;
-}
-
-.flower-of-life {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 800px;
-  height: 800px;
-  opacity: 0.008;
-  pointer-events: none;
-  z-index: 0;
-  animation: rotate-slow 120s linear infinite;
-}
-
-.flower-of-life::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 50%;
-}
-
-.flower-of-life::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  border: 1px solid rgba(6, 182, 212, 0.3);
-  border-radius: 50%;
-  transform: translate(-50%, -50%) rotate(30deg);
-}
-
-@keyframes rotate-slow {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Gemstones - Realistic Crystal Look */
-.gemstone {
-  position: fixed;
-  pointer-events: none;
-  z-index: 1;
-  animation: gem-float 10s ease-in-out infinite;
-}
-
-.gemstone svg {
-  filter: drop-shadow(0 0 15px currentColor) drop-shadow(0 0 30px currentColor);
-}
-
-.gem-1 {
-  top: 15%;
-  left: 10%;
-  color: #a855f7;
-  animation-delay: 0s;
-}
-
-.gem-2 {
-  top: 70%;
-  right: 15%;
-  color: #22d3ee;
-  animation-delay: 2s;
-}
-
-.gem-3 {
-  bottom: 20%;
-  left: 20%;
-  color: #f472b6;
-  animation-delay: 4s;
-}
-
-.gem-4 {
-  top: 25%;
-  right: 25%;
-  color: #fbbf24;
-  animation-delay: 1s;
-}
-
-.gem-5 {
-  bottom: 30%;
-  right: 10%;
-  color: #34d399;
-  animation-delay: 3s;
-}
-
-@keyframes gem-float {
-  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.6; }
-  25% { transform: translateY(-15px) rotate(45deg) scale(1.1); opacity: 0.8; }
-  50% { transform: translateY(-25px) rotate(90deg) scale(1); opacity: 0.7; }
-  75% { transform: translateY(-10px) rotate(135deg) scale(1.05); opacity: 0.9; }
-}
-
 /* Navigation */
 .space-nav {
   position: fixed;
@@ -474,7 +266,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
@@ -498,8 +290,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
-  50% { box-shadow: 0 0 20px 10px rgba(139, 92, 246, 0.6); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4)); }
+   50% { box-shadow: 0 0 20px 10px rgba(139, 92, 246, 0.6)); }
 }
 
 /* Space Button */
@@ -526,7 +318,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
@@ -536,8 +328,8 @@ body {
 
 .space-btn:hover {
   border-color: #8b5cf6;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(6, 182, 212, 0.4));
-  box-shadow: 0 0 30px rgba(139, 92, 246, 0.4), 0 0 60px rgba(6, 182, 212, 0.2);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(6, 182, 212, 0.2));
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3), inset 0 0 10px rgba(139, 92, 246, 0.1);
   transform: translateY(-2px);
 }
 
@@ -552,7 +344,7 @@ body {
 
 .space-btn.secondary:hover {
   border-color: #06b6d4;
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.4));
 }
 
 /* Splash Section */
@@ -600,23 +392,24 @@ body {
 
 @keyframes title-glow {
   0%, 100% { text-shadow: 0 0 40px rgba(139, 92, 246, 0.8); }
-  50% { text-shadow: 0 0 60px rgba(139, 92, 246, 0.8), 0 0 80px rgba(6, 182, 212, 0.4); }
+  50% { text-shadow: 0 0 60px rgba(139, 92, 246, 0.8), 0 0 80px rgba(6, 182, 212, 0.4)); }
 }
 
 .splash-subtitle {
   font-family: 'Courier New', monospace;
-  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  font-size: clamp(1rem, 5vw, 2.5rem);
   color: #8b5cf6;
   letter-spacing: 10px;
   margin: 0.5rem 0;
+  font-weight: 600;
 }
 
 .splash-tagline {
   font-family: 'Courier New', monospace;
-  font-size: clamp(1.1rem, 4vw, 2rem);
+  font-size: clamp(1rem, 4vw, 2rem);
   color: #64748b;
   letter-spacing: 4px;
-  margin-bottom: 4rem;
+  margin: 0.5rem 0;
   line-height: 1.6;
   max-width: 600px;
   margin-left: auto;
@@ -636,7 +429,7 @@ body {
   border: 1px solid rgba(139, 92, 246, 0.3);
   border-radius: 16px;
   padding: 2.5rem 2rem;
-  width: 220px;
+  width: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -654,7 +447,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.1) 50%, transparent 100%);
+  background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.1), 50%, transparent);
   transition: opacity 0.4s ease;
 }
 
@@ -674,7 +467,7 @@ body {
 
 .option-icon {
   font-size: 3rem;
-  transition: transform 0.3s ease;
+  transition: transform: 0.3s ease;
 }
 
 .option-title {
@@ -792,7 +585,7 @@ body {
 .guitar-card:hover {
   border-color: rgba(139, 92, 246, 0.5);
   transform: translateY(-8px);
-  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3), inset 0 0 20px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2), 0 0 60px rgba(139, 92, 246, 0.3), inset 0 0 10px rgba(139, 92, 246, 0.1);
 }
 
 .guitar-card.sold {
@@ -829,7 +622,7 @@ body {
   transform: translate(-50%, -50%);
   width: 150px;
   height: 150px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.4), transparent);
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent);
   filter: blur(20px);
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -885,7 +678,7 @@ body {
 }
 
 .archive-card {
-  background: linear-gradient(145deg, rgba(30, 30, 60, 0.4), rgba(10, 10, 30, 0.6));
+  background: linear-gradient(145deg, rgba(30, 30, 60, 0.4), rgba(10, 10, 30, 0.8));
   border: 1px solid rgba(6, 182, 212, 0.2);
   border-radius: 10px;
   padding: 2rem;
@@ -917,7 +710,7 @@ body {
   height: 2px;
   background: linear-gradient(90deg, transparent, #06b6d4, transparent);
   transform: scaleX(0);
-  transition: transform 0.6s ease;
+  transition: transform: 0.6s ease;
 }
 
 .archive-card:hover::before {
@@ -1123,8 +916,8 @@ body {
 }
 
 .modal-close:hover {
-  background: rgba(139, 92, 246, 0.2);
-  color: #e0e8f0;
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
   transform: rotate(90deg);
 }
 
